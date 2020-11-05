@@ -3,29 +3,7 @@ import ReactDom from "react-dom";
 
 import "./index.css";
 
-const books = [
-  {
-    id: 1,
-    img:
-      "https://images-eu.ssl-images-amazon.com/images/I/41RfgMBiSUL._AC_SX184_.jpg",
-    title: "Fall Again, Rise Again",
-    author: "sunny sen",
-  },
-  {
-    id: 2,
-    img:
-      "https://images-eu.ssl-images-amazon.com/images/I/41gVhoPaE5L._AC_SX184_.jpg",
-    title: "Think Like a Monk",
-    author: "jey shetty",
-  },
-  {
-    id: 3,
-    img:
-      "https://images-eu.ssl-images-amazon.com/images/I/51QTTApN-XL._AC_SX184_.jpg",
-    title: "The Power of Your Subconscious Mind",
-    author: "Joseph Murphy",
-  },
-];
+import { books } from "./books";
 
 //
 function BookList() {
@@ -43,11 +21,41 @@ const Book = ({ img, title, author }) => {
   // name could be anything eg banana props is convention
   //console.log(props);
   // const { img, title, author } = props;
+  //attribute, eventHandler
+  const clickHandler = (e) => {
+    console.log(e);
+    console.log(e.target);
+    alert("Hello you clicekd");
+  };
+
+  const complxExample = (author) => {
+    console.log(author);
+  };
   return (
-    <article className="book">
+    <article
+      className="book"
+      onMouseOver={() => {
+        console.log(title);
+      }}
+    >
       <img src={img} alt="" />
-      <h1>{title}</h1>
+      <h1
+        onClick={() => {
+          console.log(title);
+        }}
+      >
+        {title}
+      </h1>
       <h4>{author} </h4>
+      <button type="button" onClick={clickHandler}>
+        reference example
+      </button>
+      {/* </article><button type="button" onClick={complxExample(author)}> {/* here the function is invoked as soon as page renders hence without clicking it logs  */}
+      <button type="button" onClick={() => complxExample(author)}>
+        {" "}
+        {/* this way this function is assigned to onclick and only run when we click */}
+        more complex example
+      </button>
     </article>
   );
 };
